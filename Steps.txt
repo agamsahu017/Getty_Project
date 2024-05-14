@@ -1,0 +1,66 @@
+http://localhost:3000/users
+http://localhost:3000/products
+
+http://localhost:3000/users/add
+
+agamsahu018@yahoo.com  -- admin
+joeDoe@yahoo.com   -- user
+johnDoe@yahoo.com  -- user
+
+
+password :- 123456
+
+1)"node index.js" command for node.js start
+
+2) "npm start" for react frontend
+
+3) MySQL (phpmyadmin) must be open
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0:00 Intro
+2:01 Backends & Dependencies
+3:56 index.js and .env
+10:02 Databases and Connections
+11:35 Models and Associations
+17:36 Setup Controllers Files
+19:40 Setup File Routes
+24:21 Database Sync
+26:29 Users Controller
+43:11 Auth Controller
+51:19 AuthRoute Routing
+56:27 Connect Session Sequelize
+1:00:20 AuthUser Middleware & Protected Route
+1:08:33 Products Controller
+1:36:25 Create React App + Redux Toolkit
+1:37:33 Install Dependencies
+1:38:41 Clean Up Files
+1:41:05 Components, Pages, Routing
+2:21:20 Axios Default Credentials
+2:22:20 authSlice Redux
+2:24:51 Login AsyncThunk
+2:32:48 Login Components
+2:43:05 Get User Login & Logout
+2:45:36 Protected Dashboard
+2:53:45 Protected All Pages
+3:02:21 Product List
+3:07:47 Delete Product
+3:11:40 Add New Product
+3:17:50 Edit Product
+3:23:11 User List & Delete User
+3:27:20 Add New User
+3:33:30 Update User
