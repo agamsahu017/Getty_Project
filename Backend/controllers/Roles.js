@@ -4,7 +4,7 @@ import Roles from "../models/RoleModel.js";
 export const getRoles = async(req, res) =>{
     try {
         const response = await Roles.findAll({
-            // attributes:['uuid','name','email','role']
+             attributes:['roleName','id']
         });
         res.status(200).json(response);
     } catch (error) {

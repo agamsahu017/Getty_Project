@@ -19,7 +19,6 @@ const AddUser = () => {
       navigate("/");
     }
     if (user && user.roleId !== 1) {
-      console.log("22 ...........................");
       navigate("/dashboard");
     }
   }, [isError, user, navigate]);

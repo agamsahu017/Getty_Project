@@ -1,10 +1,15 @@
 import User from "../models/UserModel.js";
+import Roles from "../models/RoleModel.js";
 import argon2 from "argon2";
 
 export const getUsers = async(req, res) =>{
     try {
         const response = await User.findAll({
-            attributes:['uuid','name','email','roleID']
+            attributes:['uuid','name','email','roleID'],
+            include:[{
+                model:Roles,
+                attributes:['roleName','id']
+            }]
         });
         res.status(200).json(response);
     } catch (error) {
@@ -16,6 +21,10 @@ export const getUserById = async(req, res) =>{
     try {
         const response = await User.findOne({
             attributes:['uuid','name','email','roleID'],
+            include:[{
+                model:Roles,
+                attributes:['roleName','id']
+            }],
             where: {
                 uuid: req.params.id
             }

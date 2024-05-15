@@ -7,10 +7,20 @@ const FormEditUser = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
+  const [roles, setRoles] = useState("");
   const [role, setRole] = useState("");
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
+
+  const getRoles = async () => {
+    const response = await axios.get("http://localhost:5000/roles");
+    setRoles(response.data);
+  };
+
+  useEffect(() => {
+    getRoles();
+  }, []);
 
   useEffect(() => {
     const getUserById = async () => {
@@ -36,7 +46,7 @@ const FormEditUser = () => {
         email: email,
         password: password,
         confPassword: confPassword,
-        role: role,
+        roleId: role,
       });
       navigate("/users");
     } catch (error) {
@@ -110,8 +120,12 @@ const FormEditUser = () => {
                       value={role}
                       onChange={(e) => setRole(e.target.value)}
                     >
-                      <option value="admin">Admin</option>
-                      <option value="user">User</option>
+                      {Array.isArray(roles) &&
+                        roles.map((val) => (
+                          <option key={val.id} value={val.id}>
+                            {val.roleName}
+                          </option>
+                        ))}
                     </select>
                   </div>
                 </div>

@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const FormAddUser = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [roles, setRoles] = useState("");
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState(1);
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
+
+  const getRoles = async () => {
+    const response = await axios.get("http://localhost:5000/roles");
+    setRoles(response.data);
+  };
+
+  useEffect(() => {
+    getRoles();
+  }, []);
 
   const saveUser = async (e) => {
     e.preventDefault();
@@ -19,7 +29,7 @@ const FormAddUser = () => {
         email: email,
         password: password,
         confPassword: confPassword,
-        role: role,
+        roleId: role,
       });
       navigate("/users");
     } catch (error) {
@@ -93,8 +103,11 @@ const FormAddUser = () => {
                       value={role}
                       onChange={(e) => setRole(e.target.value)}
                     >
-                      <option value="admin">Admin</option>
-                      <option value="user">User</option>
+                      {Array.isArray(roles) && roles.map((val) => (
+                        <option key={val.id} value={val.id}>
+                          {val.roleName}
+                        </option>
+                      ))}
                     </select>
                   </div>
                 </div>

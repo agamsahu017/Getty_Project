@@ -15,8 +15,12 @@ const Userlist = () => {
   };
 
   const deleteUser = async (userId) => {
-    await axios.delete(`http://localhost:5000/users/${userId}`);
-    getUsers();
+    const result = window.confirm('Are you sure you want to delete?');
+    if (result) {
+      await axios.delete(`http://localhost:5000/users/${userId}`);
+      getUsers();
+    }
+    
   };
 
   return (
@@ -42,7 +46,7 @@ const Userlist = () => {
               <td>{index + 1}</td>
               <td>{user.name}</td>
               <td>{user.email}</td>
-              <td>{user.role}</td>
+              <td>{user.role.roleName}</td>
               <td>
                 <Link
                   to={`/users/edit/${user.uuid}`}

@@ -1,5 +1,6 @@
 import User from "../models/UserModel.js";
 import argon2 from "argon2";
+import Roles from "../models/RoleModel.js";
 
 export const Login = async (req, res) =>{
     const user = await User.findOne({
@@ -24,6 +25,10 @@ export const Me = async (req, res) =>{
     }
     const user = await User.findOne({
         attributes:['uuid','name','email','roleId'],
+        include:[{
+            model:Roles,
+            attributes:['roleName']
+        }],
         where: {
             uuid: req.session.userId
         }

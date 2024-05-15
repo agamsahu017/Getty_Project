@@ -15,8 +15,11 @@ const ProductList = () => {
   };
 
   const deleteProduct = async (productId) => {
+    const result = window.confirm('Are you sure you want to delete?');
+    if (result) {
     await axios.delete(`http://localhost:5000/products/${productId}`);
     getProducts();
+    }
   };
 
   return (
