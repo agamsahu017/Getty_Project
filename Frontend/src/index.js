@@ -5,7 +5,8 @@ import { store } from './app/store';
 import App from './App';
 import "bulma/css/bulma.css";
 import axios from "axios";
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 axios.defaults.withCredentials = true;
 
 const container = document.getElementById('root');
@@ -15,6 +16,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <App />
+      <ToastContainer />
     </Provider>
   </React.StrictMode>
 );

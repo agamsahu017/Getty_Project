@@ -24,10 +24,10 @@ export const Me = async (req, res) =>{
         return res.status(401).json({msg: "Please log in to your account!"});
     }
     const user = await User.findOne({
-        attributes:['uuid','name','email','roleId'],
+        attributes:['uuid','name','email','roleId','id'],
         include:[{
             model:Roles,
-            attributes:['roleName']
+            attributes:['roleName','id']
         }],
         where: {
             uuid: req.session.userId

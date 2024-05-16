@@ -14,6 +14,8 @@ const Dashboard = () => {
     dispatch(getMe());
   }, [dispatch]);
 
+  console.log("17 ",isError);
+
   useEffect(() => {
     if (isError) {
       navigate("/");

@@ -12,6 +12,9 @@ const Login = () => {
     (state) => state.auth
   );
 
+  console.log("15 ", user);
+  console.log("16 ", isSuccess);
+
   useEffect(() => {
     if (user || isSuccess) {
       navigate("/dashboard");

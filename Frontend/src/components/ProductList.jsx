@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import {  toast } from 'react-toastify';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -15,10 +16,25 @@ const ProductList = () => {
   };
 
   const deleteProduct = async (productId) => {
-    const result = window.confirm('Are you sure you want to delete?');
+    const result = window.confirm("Are you sure you want to delete?");
     if (result) {
-    await axios.delete(`http://localhost:5000/products/${productId}`);
-    getProducts();
+      try {
+        await axios.delete(`http://localhost:5000/products/${productId}`);
+        getProducts();
+      } catch (error) {
+        console.log("24", error.response.data.msg);
+        toast.error(error.response.data.msg, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          // transition: Bounce,
+          })
+      }
     }
   };
 

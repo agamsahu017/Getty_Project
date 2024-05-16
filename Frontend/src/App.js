@@ -18,9 +18,11 @@ function App() {
           <Route path="/users" element={<Users />} />
           <Route path="/users/add" element={<AddUser />} />
           <Route path="/users/edit/:id" element={<EditUser />} />
+
           <Route path="/products" element={<Products />} />
           <Route path="/products/add" element={<AddProduct />} />
           <Route path="/products/edit/:id" element={<EditProduct />} />
+          
         </Routes>
       </BrowserRouter>
     </div>

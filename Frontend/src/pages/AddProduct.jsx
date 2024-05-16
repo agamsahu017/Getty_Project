@@ -8,7 +8,7 @@ import { getMe } from "../features/authSlice";
 const AddProduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isError } = useSelector((state) => state.auth);
+  const { isError, user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getMe());
@@ -18,7 +18,10 @@ const AddProduct = () => {
     if (isError) {
       navigate("/");
     }
-  }, [isError, navigate]);
+    if (user && user.roleId !== 2) {
+      navigate("/dashboard");
+    }
+  }, [isError, user, navigate]);
   return (
     <Layout>
       <FormAddProduct />
@@ -27,3 +30,6 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
+
+
+

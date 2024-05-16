@@ -6,7 +6,6 @@ export const getProducts = async (req, res) =>{
     try {
         let response;
         if(req.roleId == 1){
-            console.log("9 ", req.roleId);
             response = await Product.findAll({
                 attributes:['uuid','name','price'],
                 include:[{
@@ -15,7 +14,6 @@ export const getProducts = async (req, res) =>{
                 }]
             });
         }else{
-            console.log("18 ", req.roleId);
             response = await Product.findAll({
                 attributes:['uuid','name','price'],
                 where:{
@@ -73,6 +71,7 @@ export const getProductById = async(req, res) =>{
 
 export const createProduct = async(req, res) =>{
     const {name, price} = req.body;
+   
     try {
         await Product.create({
             name: name,
